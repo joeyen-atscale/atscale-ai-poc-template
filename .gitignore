@@ -1,0 +1,10 @@
+# Secrets & customer-specific config — never commit
+poc.config.sh
+connections.yaml
+
+# Generated artifacts
+out/
+*.twb
+*.pbix
+data-shape.yaml
+values.yaml

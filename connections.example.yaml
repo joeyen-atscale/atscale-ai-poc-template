@@ -1,0 +1,42 @@
+# =============================================================================
+# connections.yaml — copy to connections.yaml (git-ignored) and fill in.
+# Consumed by every ps-utils operation via --connection-file.
+# Format reference: ps-utils README "Connection format" section.
+# =============================================================================
+
+users:
+  poc_user:
+    apiToken: "<atscale-api-token>"     # AtScale: profile icon -> API Token -> Generate
+    username: "<atscale-username>"      # also needed: deploy uses user/pass for the session cookie
+    password: "<atscale-password>"
+
+connections:
+
+  # ---- Source warehouse: the customer's real data (schema introspection) ----
+  customer_snowflake:
+    sql:
+      dialect: snowflake
+      account: "<org>-<account>"
+      warehouse: "<wh>"
+      database: "<db>"
+      schema: "<schema>"
+      username: "<sf-user>"
+      password: "<sf-password>"
+
+  # ---- Demo warehouse: where SAFE synthetic data is written (NOT the source) -
+  poc_demo_warehouse:
+    sql:
+      dialect: snowflake
+      account: "<org>-<account>"
+      warehouse: "<wh>"
+      database: "<demo-db>"
+      schema: "poc_demo"
+      username: "<sf-user>"
+      password: "<sf-password>"
+
+  # ---- AtScale instance: where the model is deployed + MCP server runs -------
+  poc_atscale:
+    atscale:
+      url: https://atscale-poc.example.com   # no trailing slash
+      user: poc_user
+      # insecure: true   # default true (self-signed certs common on POC instances)
